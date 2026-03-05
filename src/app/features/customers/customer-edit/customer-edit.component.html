@@ -1,0 +1,28 @@
+<section class="page-card page-shell">
+  <article class="card">
+    <h2>Edit Customer</h2>
+
+    <div class="state-card" *ngIf="!loaded">
+      <div class="spinner"></div>
+      <p>Loading customer...</p>
+    </div>
+
+    <form *ngIf="loaded" (ngSubmit)="submit()" #f="ngForm">
+      <label for="customerName">Name</label>
+      <input id="customerName" name="customerName" [(ngModel)]="model.customerName" required />
+
+      <label for="address">Address</label>
+      <textarea id="address" rows="3" name="address" [(ngModel)]="model.address" required></textarea>
+
+      <label for="email">Email</label>
+      <input id="email" type="email" name="email" [(ngModel)]="model.email" required />
+
+      <label for="contactNumber">Contact Number</label>
+      <input id="contactNumber" name="contactNumber" [(ngModel)]="model.contactNumber" required />
+
+      <button class="btn" type="submit" [disabled]="f.invalid || saving">
+        {{ saving ? 'Updating...' : 'Update Customer' }}
+      </button>
+    </form>
+  </article>
+</section>

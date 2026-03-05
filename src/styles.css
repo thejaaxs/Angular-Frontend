@@ -1,1 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
+@import './app/core/styles/theme.css';
+
+:root {
+  color-scheme: light;
+}

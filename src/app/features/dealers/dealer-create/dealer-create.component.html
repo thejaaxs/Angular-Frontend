@@ -1,0 +1,22 @@
+<section class="page-card page-shell">
+  <article class="form-card">
+    <h2>Create Dealer</h2>
+    <form (ngSubmit)="submit()" #dealerForm="ngForm">
+      <label for="dealerName">Dealer Name</label>
+      <input id="dealerName" type="text" name="dealerName" [(ngModel)]="model.dealerName" required />
+
+      <label for="address">Address</label>
+      <textarea id="address" rows="3" name="address" [(ngModel)]="model.address" required></textarea>
+
+      <label for="contactNumber">Contact Number</label>
+      <input id="contactNumber" type="text" name="contactNumber" [(ngModel)]="model.contactNumber" />
+
+      <label for="email">Email</label>
+      <input id="email" type="email" name="email" [(ngModel)]="model.email" />
+
+      <button class="btn" type="submit" [disabled]="dealerForm.invalid || saving">
+        {{ saving ? 'Saving...' : 'Save Dealer' }}
+      </button>
+    </form>
+  </article>
+</section>

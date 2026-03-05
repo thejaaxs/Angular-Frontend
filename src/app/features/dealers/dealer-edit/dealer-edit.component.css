@@ -1,0 +1,12 @@
+:host {
+  display: block;
+}
+
+.card {
+  max-width: 760px;
+}
+
+form {
+  display: grid;
+  gap: 0.55rem;
+}

@@ -1,0 +1,27 @@
+:host {
+  display: block;
+}
+
+.bulk-delete-panel {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.bulk-delete-panel h4 {
+  margin: 0;
+}
+
+.bulk-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.bulk-actions input {
+  flex: 1;
+  min-width: 220px;
+}
+
+th {
+  cursor: pointer;
+}

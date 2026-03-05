@@ -1,0 +1,12 @@
+.card {
+  max-width: 760px;
+}
+
+.form-grid {
+  display: grid;
+  gap: 0.55rem;
+}
+
+small {
+  color: #526d8a;
+}

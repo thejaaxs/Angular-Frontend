@@ -1,0 +1,41 @@
+<section class="page-card page-shell">
+  <article class="card">
+    <h2>Make Payment</h2>
+    <p class="section-subtitle">Complete payment for confirmed bookings securely.</p>
+
+    <form (ngSubmit)="submit()" #f="ngForm">
+      <label for="customerId">Customer</label>
+      <select id="customerId" [(ngModel)]="model.customerId" name="customerId" required (ngModelChange)="loadBookings()">
+        <option *ngFor="let c of customers" [ngValue]="c.customerId">
+          {{ c.customerId }} - {{ c.customerName }} ({{ c.email }})
+        </option>
+      </select>
+
+      <label for="bookingId">Booking</label>
+      <select id="bookingId" [(ngModel)]="model.bookingId" name="bookingId" required (ngModelChange)="selectBooking($event)">
+        <option *ngFor="let b of bookings" [ngValue]="b.id">
+          #{{ b.id }} | Dealer: {{ b.dealerId }} | Vehicle: {{ b.vehicleId }} | Status: {{ b.bookingStatus }}
+        </option>
+      </select>
+
+      <label for="amount">Amount</label>
+      <input id="amount" type="number" [(ngModel)]="model.amount" name="amount" min="0" required />
+
+      <label for="paymentMethod">Method</label>
+      <select id="paymentMethod" [(ngModel)]="model.paymentMethod" name="paymentMethod" required>
+        <option value="UPI">UPI</option>
+        <option value="CARD">CARD</option>
+      </select>
+
+      <button class="btn" type="submit" [disabled]="f.invalid || processing || !bookings.length">
+        {{ processing ? 'Processing...' : 'Pay' }}
+      </button>
+    </form>
+
+    <div *ngIf="result" class="result">
+      <p><b>Status:</b> {{ result.paymentStatus }}</p>
+      <p><b>Transaction:</b> {{ result.transactionId || 'N/A' }}</p>
+      <p><b>Date:</b> {{ result.paymentDate ? (result.paymentDate | date: 'medium') : '-' }}</p>
+    </div>
+  </article>
+</section>

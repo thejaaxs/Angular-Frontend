@@ -1,0 +1,16 @@
+:host {
+  display: block;
+}
+
+.card {
+  max-width: 780px;
+}
+
+form {
+  display: grid;
+  gap: 0.55rem;
+}
+
+img {
+  margin-top: 0.2rem;
+}

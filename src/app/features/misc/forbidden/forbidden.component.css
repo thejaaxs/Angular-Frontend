@@ -1,0 +1,83 @@
+.forbidden-wrap {
+  min-height: calc(100vh - 4rem);
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+}
+
+.forbidden-card {
+  width: min(100%, 560px);
+  text-align: center;
+  background: var(--mm-surface);
+  border: 1px solid var(--mm-border);
+  border-radius: 16px;
+  padding: 1.4rem 1.2rem;
+  box-shadow: var(--mm-shadow-md);
+}
+
+.warning-icon {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 0.6rem;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #8a2b12;
+  background: #ffe8dd;
+  border: 1px solid #ffc8b3;
+}
+
+.forbidden-card h2 {
+  margin: 0.2rem 0 0.45rem;
+}
+
+.lead {
+  margin: 0;
+  color: var(--mm-text-muted);
+}
+
+.countdown {
+  margin: 0.65rem 0 0.8rem;
+  font-weight: 700;
+  color: #9b2f14;
+}
+
+.progress-track {
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  background: #f3f6fb;
+  border: 1px solid #dbe3f3;
+  overflow: hidden;
+}
+
+.progress-fill {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, #ef8456 0%, #e36a34 100%);
+  transition: width 0.22s linear;
+}
+
+.meta {
+  margin: 0.7rem 0 0;
+  font-size: 0.88rem;
+  color: var(--mm-text-muted);
+  word-break: break-word;
+}
+
+.meta code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
+  font-size: 0.82rem;
+  background: #f2f6ff;
+  border: 1px solid #d9e4fb;
+  border-radius: 6px;
+  padding: 0.08rem 0.3rem;
+}
+
+.btn {
+  margin-top: 1rem;
+  min-width: 140px;
+}

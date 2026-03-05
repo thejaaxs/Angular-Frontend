@@ -1,0 +1,38 @@
+<section class="page-card page-shell">
+  <article class="card">
+    <h2>Create Favorite</h2>
+    <p class="section-subtitle">Save dealer and product combinations for quick access later.</p>
+
+    <form (ngSubmit)="submit()" #f="ngForm">
+    <label for="customerId">Customer</label>
+    <select id="customerId" [(ngModel)]="model.customerId" name="customerId" required>
+      <option *ngFor="let c of customers" [ngValue]="c.customerId">
+        {{ c.customerId }} - {{ c.customerName }} ({{ c.email }})
+      </option>
+    </select>
+
+    <label for="dealerId">Dealer</label>
+    <select id="dealerId" [(ngModel)]="model.dealerId" name="dealerId" required (ngModelChange)="selectDealer($event)">
+      <option *ngFor="let d of dealers" [ngValue]="d.dealerId">
+        {{ d.dealerId }} - {{ d.dealerName }}
+      </option>
+    </select>
+
+    <label for="dealerName">Dealer Name</label>
+    <input id="dealerName" [(ngModel)]="model.dealerName" name="dealerName" required minlength="2" readonly />
+
+    <label for="address">Address</label>
+    <input id="address" [(ngModel)]="model.address" name="address" required minlength="3" readonly />
+
+    <label for="productName">Product Name</label>
+    <input id="productName" [(ngModel)]="model.productName" name="productName" />
+
+    <label for="reason">Reason</label>
+    <input id="reason" [(ngModel)]="model.reason" name="reason" />
+
+    <button class="btn" type="submit" [disabled]="f.invalid || loading">
+      {{ loading ? 'Saving...' : 'Save' }}
+    </button>
+    </form>
+  </article>
+</section>

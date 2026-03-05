@@ -1,0 +1,53 @@
+<section class="page-card page-shell">
+  <div class="section-header">
+    <div>
+      <h2>Customers</h2>
+      <p class="section-subtitle">View and maintain customer profiles.</p>
+    </div>
+    <a routerLink="/admin/customers/create"><button class="btn" type="button">Add Customer</button></a>
+  </div>
+
+  <div class="panel" *ngIf="loading">
+    <div class="skeleton skeleton-row"></div>
+    <div class="skeleton skeleton-row"></div>
+    <div class="skeleton skeleton-row"></div>
+    <div class="skeleton skeleton-row"></div>
+  </div>
+
+  <div class="state-card error" *ngIf="!loading && errorMessage">
+    <p>{{ errorMessage }}</p>
+    <button class="btn btn-ghost" type="button" (click)="load()">Retry</button>
+  </div>
+
+  <div class="empty" *ngIf="!loading && !errorMessage && list.length === 0">
+    No customers found.
+  </div>
+
+  <table *ngIf="!loading && !errorMessage && list.length > 0">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Email</th>
+        <th>Contact Number</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of list">
+        <td>{{ c.customerId }}</td>
+        <td>{{ c.customerName }}</td>
+        <td>{{ c.address }}</td>
+        <td>{{ c.email }}</td>
+        <td>{{ c.contactNumber }}</td>
+        <td>
+          <div class="table-actions">
+            <a [routerLink]="['/admin/customers/edit', c.customerId]"><button class="btn btn-ghost" type="button">Edit</button></a>
+            <button class="btn btn-danger" *ngIf="c.customerId" type="button" (click)="del(c.customerId)">Delete</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>

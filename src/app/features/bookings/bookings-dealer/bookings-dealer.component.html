@@ -1,0 +1,63 @@
+<section class="page-card page-shell">
+  <app-section-header
+    title="Dealer Bookings"
+    subtitle="Confirm or cancel incoming orders from customers."
+  ></app-section-header>
+
+  <div class="toolbar">
+    <div>
+      <label for="dealerId">Dealer</label>
+      <select id="dealerId" [(ngModel)]="dealerId">
+        <option *ngFor="let d of dealers" [ngValue]="d.dealerId">
+          {{ d.dealerId }} - {{ d.dealerName }} ({{ d.email || 'no-email' }})
+        </option>
+      </select>
+    </div>
+    <button class="btn btn-ghost" type="button" (click)="load()" [disabled]="loading">{{ loading ? 'Loading...' : 'Load' }}</button>
+  </div>
+
+  <div class="panel" *ngIf="loading">
+    <app-skeleton-loader variant="row" [count]="6"></app-skeleton-loader>
+  </div>
+
+  <div class="state-card error" *ngIf="!loading && errorMessage">
+    <p>{{ errorMessage }}</p>
+    <button class="btn btn-ghost" type="button" (click)="load()">Retry</button>
+  </div>
+
+  <div class="empty" *ngIf="!loading && !errorMessage && list.length === 0">
+    No bookings yet.
+  </div>
+
+  <table *ngIf="!loading && !errorMessage && list.length > 0">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Customer</th>
+        <th>Vehicle</th>
+        <th>Status</th>
+        <th>Payment</th>
+        <th>Amount</th>
+        <th>Delivery Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let b of list">
+        <td>{{ b.id }}</td>
+        <td>{{ b.customerId }}</td>
+        <td>{{ b.vehicleId }}</td>
+        <td><app-badge [value]="b.bookingStatus || 'PENDING'"></app-badge></td>
+        <td><app-badge [value]="b.paymentStatus || 'UNPAID'"></app-badge></td>
+        <td>{{ b.amount ?? '-' }}</td>
+        <td>{{ b.deliveryDate ? (b.deliveryDate | date: 'medium') : '-' }}</td>
+        <td>
+          <div class="table-actions">
+            <button class="btn btn-ghost" [disabled]="!canConfirm(b)" (click)="confirm(b.id!)">Confirm</button>
+            <button class="btn btn-danger" [disabled]="!canCancel(b)" (click)="cancel(b.id!)">Cancel</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>

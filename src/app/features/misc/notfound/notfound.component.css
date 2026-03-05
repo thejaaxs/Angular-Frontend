@@ -1,0 +1,13 @@
+.state-card {
+  max-width: 620px;
+  margin: 2rem auto;
+  text-align: center;
+  background: #fff;
+  border: 1px solid #dbe3f3;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.state-card h2 {
+  margin-bottom: 0.5rem;
+}

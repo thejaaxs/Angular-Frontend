@@ -1,0 +1,27 @@
+:host {
+  display: block;
+}
+
+.card {
+  max-width: 760px;
+}
+
+form {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.rating-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.rating-input {
+  width: 86px;
+  text-align: center;
+}
+
+.rating-field small {
+  color: var(--mm-text-muted);
+}

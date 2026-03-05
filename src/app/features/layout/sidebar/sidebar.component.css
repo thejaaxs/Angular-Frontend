@@ -1,0 +1,74 @@
+.sidebar {
+  border-right: 1px solid var(--mm-border);
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  align-self: start;
+  min-height: 100vh;
+}
+
+.brand {
+  border: 1px solid #d8e3f4;
+  background: linear-gradient(140deg, #f4f8ff 0%, #eef4ff 100%);
+  border-radius: 14px;
+  padding: 0.85rem;
+  margin-bottom: 1.15rem;
+  box-shadow: var(--mm-shadow-sm);
+}
+
+.brand small {
+  color: #617998;
+  font-size: 0.79rem;
+}
+
+.sidebar h2 {
+  margin: 0 0 0.2rem;
+  font-size: 1rem;
+  color: #193a66;
+}
+
+.menu-group {
+  display: grid;
+  gap: 0.3rem;
+  margin-bottom: 1.25rem;
+}
+
+.menu-group p {
+  margin: 0 0 0.42rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: #516b8a;
+}
+
+.menu-group a {
+  color: #1f3e62;
+  text-decoration: none;
+  padding: 0.5rem 0.6rem;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  font-size: 0.89rem;
+  font-weight: 500;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.12s ease;
+}
+
+.menu-group a.active,
+.menu-group a:hover {
+  background: #e8f0ff;
+  border-color: #cfdcf5;
+  text-decoration: none;
+}
+
+.menu-group a:hover {
+  transform: translateX(2px);
+}
+
+@media (max-width: 960px) {
+  .sidebar {
+    border-right: 0;
+    border-bottom: 1px solid var(--mm-border);
+    min-height: auto;
+    position: static;
+  }
+}

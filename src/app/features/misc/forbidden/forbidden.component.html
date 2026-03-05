@@ -1,0 +1,18 @@
+<section class="forbidden-wrap">
+  <article class="forbidden-card" role="alert" aria-live="polite">
+    <div class="warning-icon" aria-hidden="true">!</div>
+
+    <h2>403 Forbidden</h2>
+    <p class="lead">You don't have access to this page.</p>
+    <p class="countdown">{{ countdownText }}</p>
+
+    <div class="progress-track" aria-hidden="true">
+      <span class="progress-fill" [style.width.%]="progressPercent"></span>
+    </div>
+
+    <p class="meta" *ngIf="fromUrl">Tried to open: <code>{{ fromUrl }}</code></p>
+    <p class="meta">Your role: <b>{{ roleHint }}</b> | Required: <b>{{ requiredRolesHint }}</b></p>
+
+    <button type="button" class="btn" (click)="goNow()">Go Now</button>
+  </article>
+</section>

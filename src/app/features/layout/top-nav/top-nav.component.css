@@ -1,0 +1,251 @@
+.mm-topnav {
+  position: sticky;
+  top: 0;
+  z-index: 45;
+  border-bottom: 1px solid var(--mm-border);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06);
+}
+
+.mm-topnav-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0.62rem 1.2rem;
+  display: grid;
+  grid-template-columns: auto auto minmax(280px, 460px) 1fr auto;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.menu-toggle {
+  width: 2.28rem;
+  height: 2.28rem;
+  border: 1px solid #d5dfef;
+  border-radius: 10px;
+  background: #f7faff;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  padding: 0.3rem;
+}
+
+.menu-toggle span {
+  width: 15px;
+  height: 2px;
+  border-radius: 999px;
+  background: #2f4f7d;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.54rem;
+  text-decoration: none;
+}
+
+.brand:hover {
+  text-decoration: none;
+}
+
+.brand-mark {
+  width: 33px;
+  height: 33px;
+  border-radius: 10px;
+  background: linear-gradient(140deg, #2f65b2, #1c3f72);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+}
+
+.brand-text {
+  display: grid;
+  line-height: 1.12;
+}
+
+.brand-text strong {
+  font-size: 0.96rem;
+  color: #143a63;
+}
+
+.brand-text small {
+  font-size: 0.7rem;
+  color: #607997;
+}
+
+.top-search {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.45rem;
+}
+
+.top-search input {
+  min-width: 0;
+  background: #f9fbff;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.34rem;
+}
+
+.nav-links a {
+  border: 1px solid transparent;
+  border-radius: 10px;
+  color: #254a75;
+  font-size: 0.83rem;
+  font-weight: 700;
+  padding: 0.42rem 0.66rem;
+  text-decoration: none;
+}
+
+.nav-links a:hover {
+  background: #edf3ff;
+  border-color: #d4def0;
+}
+
+.nav-links a.active {
+  background: #e5edff;
+  border-color: #cad8f2;
+  color: #173e70;
+}
+
+.desktop-nav {
+  justify-content: flex-end;
+}
+
+.account-wrap {
+  position: relative;
+}
+
+.profile-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+  min-width: 196px;
+  border: 1px solid #d2deef;
+  border-radius: 10px;
+  background: #f7fbff;
+  color: #193f6d;
+  padding: 0.34rem 0.5rem;
+}
+
+.profile-meta {
+  min-width: 0;
+  display: grid;
+  text-align: left;
+}
+
+.profile-email {
+  max-width: 172px;
+  font-size: 0.74rem;
+  color: #526a87;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.role-badge {
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+.caret {
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid #3a5f90;
+  border-bottom: 2px solid #3a5f90;
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.caret.open {
+  transform: rotate(-135deg);
+}
+
+.profile-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.45rem);
+  display: grid;
+  gap: 0.4rem;
+  width: 190px;
+  background: #fff;
+  border: 1px solid var(--mm-border);
+  border-radius: 12px;
+  box-shadow: var(--mm-shadow-md);
+  padding: 0.55rem;
+}
+
+.guest-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+}
+
+.mobile-drawer {
+  display: none;
+}
+
+@media (max-width: 1180px) {
+  .mm-topnav-inner {
+    grid-template-columns: auto auto 1fr auto;
+  }
+
+  .desktop-nav {
+    display: none;
+  }
+}
+
+@media (max-width: 960px) {
+  .mm-topnav-inner {
+    grid-template-columns: auto auto 1fr auto;
+    padding: 0.62rem 0.78rem;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+  }
+
+  .desktop-search {
+    display: none;
+  }
+
+  .profile-btn {
+    min-width: 0;
+  }
+
+  .profile-email {
+    max-width: 108px;
+  }
+
+  .brand-text small {
+    display: none;
+  }
+
+  .mobile-drawer {
+    display: grid;
+    gap: 0.62rem;
+    border-top: 1px solid var(--mm-border);
+    padding: 0.7rem 0.78rem;
+    background: #fff;
+  }
+
+  .mobile-nav {
+    flex-wrap: wrap;
+  }
+
+  .mobile-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .mobile-search {
+    grid-template-columns: 1fr auto;
+  }
+}

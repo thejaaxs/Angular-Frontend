@@ -1,0 +1,36 @@
+<section class="page-card page-shell">
+  <article class="card">
+    <h2>Edit Favorite</h2>
+
+    <div class="state-card" *ngIf="!loaded">
+      <div class="spinner"></div>
+      <p>Loading favorite...</p>
+    </div>
+
+    <form *ngIf="loaded" (ngSubmit)="submit()" #f="ngForm">
+      <p class="section-subtitle">Updating dealer by old name: <b>{{ oldName }}</b></p>
+
+      <label for="customerId">Customer ID</label>
+      <input id="customerId" type="number" [(ngModel)]="model.customerId" name="customerId" required />
+
+      <label for="dealerId">Dealer ID</label>
+      <input id="dealerId" type="number" [(ngModel)]="model.dealerId" name="dealerId" required />
+
+      <label for="dealerName">Dealer Name</label>
+      <input id="dealerName" [(ngModel)]="model.dealerName" name="dealerName" required />
+
+      <label for="address">Address</label>
+      <input id="address" [(ngModel)]="model.address" name="address" required />
+
+      <label for="productName">Product Name</label>
+      <input id="productName" [(ngModel)]="model.productName" name="productName" />
+
+      <label for="reason">Reason</label>
+      <input id="reason" [(ngModel)]="model.reason" name="reason" />
+
+      <button class="btn" type="submit" [disabled]="f.invalid || saving">
+        {{ saving ? 'Updating...' : 'Update' }}
+      </button>
+    </form>
+  </article>
+</section>

@@ -1,0 +1,41 @@
+.shell-layout {
+  min-height: 100vh;
+  display: block;
+}
+
+.shell-main {
+  padding: 0.95rem 1.2rem 0.4rem;
+  position: relative;
+  min-width: 0;
+}
+
+.shell-content {
+  display: block;
+  padding-bottom: 2rem;
+}
+
+.route-loading {
+  height: 4px;
+  width: 100%;
+  border-radius: 999px;
+  margin-bottom: 0.9rem;
+  background: linear-gradient(90deg, #234b8e 0%, #2f5fb1 38%, #4b7dd0 70%, #234b8e 100%);
+  background-size: 200% 100%;
+  animation: route-loading 1s linear infinite;
+  box-shadow: 0 8px 18px rgba(35, 75, 142, 0.28);
+}
+
+@keyframes route-loading {
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: 200% 0%;
+  }
+}
+
+@media (max-width: 960px) {
+  .shell-main {
+    padding: 0.8rem 0.78rem 0.25rem;
+  }
+}

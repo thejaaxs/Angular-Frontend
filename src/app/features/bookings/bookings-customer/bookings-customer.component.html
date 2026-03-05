@@ -1,0 +1,61 @@
+<section class="page-card page-shell">
+  <app-section-header
+    title="My Bookings"
+    subtitle="Track booking and payment status in one place."
+  ></app-section-header>
+
+  <div class="toolbar">
+    <div>
+      <label for="customerId">Customer</label>
+      <select id="customerId" [(ngModel)]="customerId">
+        <option *ngFor="let c of customers" [ngValue]="c.customerId">
+          {{ c.customerId }} - {{ c.customerName }} ({{ c.email }})
+        </option>
+      </select>
+    </div>
+    <button class="btn btn-ghost" type="button" (click)="load()" [disabled]="loading">{{ loading ? 'Loading...' : 'Load' }}</button>
+    <a routerLink="/customer/bookings/create"><button class="btn" type="button">Create Booking</button></a>
+  </div>
+
+  <div class="panel" *ngIf="loading">
+    <app-skeleton-loader variant="row" [count]="6"></app-skeleton-loader>
+  </div>
+
+  <div class="state-card error" *ngIf="!loading && errorMessage">
+    <p>{{ errorMessage }}</p>
+    <button class="btn btn-ghost" type="button" (click)="load()">Retry</button>
+  </div>
+
+  <div class="empty" *ngIf="!loading && !errorMessage && list.length === 0">
+    No bookings yet.
+  </div>
+
+  <table *ngIf="!loading && !errorMessage && list.length > 0">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Vehicle</th>
+        <th>Dealer</th>
+        <th>Status</th>
+        <th>Payment</th>
+        <th>Amount</th>
+        <th>Delivery Date</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let b of list">
+        <td>{{ b.id }}</td>
+        <td>{{ b.vehicleId }}</td>
+        <td>{{ b.dealerId }}</td>
+        <td><app-badge [value]="b.bookingStatus || 'PENDING'"></app-badge></td>
+        <td><app-badge [value]="b.paymentStatus || 'UNPAID'"></app-badge></td>
+        <td>{{ b.amount ?? '-' }}</td>
+        <td>{{ b.deliveryDate ? (b.deliveryDate | date: 'medium') : '-' }}</td>
+        <td>
+          <button class="btn btn-danger" [disabled]="!canCancel(b)" (click)="cancel(b.id!)">Cancel</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>

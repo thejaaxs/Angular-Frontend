@@ -1,0 +1,57 @@
+<section class="page-card page-shell">
+  <article class="card form-card">
+    <h2>Create Booking</h2>
+    <p class="section-subtitle">Pick customer, dealer and vehicle to complete a new booking.</p>
+
+    <form (ngSubmit)="submit()" #f="ngForm" class="form-grid">
+    <label for="customerId">Customer</label>
+    <select
+      *ngIf="customers.length > 0; else customerManual"
+      id="customerId"
+      [(ngModel)]="model.customerId"
+      name="customerId"
+      required
+    >
+      <option *ngFor="let c of customers" [ngValue]="c.customerId">
+        {{ c.customerId }} - {{ c.customerName }} ({{ c.email }})
+      </option>
+    </select>
+    <ng-template #customerManual>
+      <small>Customer list unavailable, enter Customer ID manually.</small>
+      <input id="customerId" type="number" [(ngModel)]="model.customerId" name="customerIdManual" required min="1" />
+    </ng-template>
+
+    <label for="dealerId">Dealer</label>
+    <select *ngIf="dealers.length > 0; else dealerManual" id="dealerId" [(ngModel)]="model.dealerId" name="dealerId" required (ngModelChange)="onDealerChange()">
+      <option *ngFor="let d of dealers" [ngValue]="d.dealerId">
+        {{ d.dealerId }} - {{ d.dealerName }} ({{ d.email || 'no-email' }})
+      </option>
+    </select>
+    <ng-template #dealerManual>
+      <small>Dealer list unavailable, enter Dealer ID manually.</small>
+      <input id="dealerId" type="number" [(ngModel)]="model.dealerId" name="dealerIdManual" required min="1" />
+    </ng-template>
+
+    <label for="vehicleId">Vehicle</label>
+    <select *ngIf="vehicles.length > 0; else vehicleManual" id="vehicleId" [(ngModel)]="model.vehicleId" name="vehicleId" required (ngModelChange)="selectVehicle($event)">
+      <option *ngFor="let v of vehicles" [ngValue]="v.id">
+        {{ v.id }} - {{ v.name }} ({{ v.brand }}) | {{ v.price | number:'1.0-2' }}
+      </option>
+    </select>
+    <ng-template #vehicleManual>
+      <small>No vehicles found for selected dealer. Enter Vehicle ID manually.</small>
+      <input id="vehicleId" type="number" [(ngModel)]="model.vehicleId" name="vehicleIdManual" required min="1" />
+    </ng-template>
+
+    <label for="amount">Amount</label>
+    <input id="amount" type="number" [(ngModel)]="model.amount" name="amount" min="0" />
+
+    <label for="deliveryDate">Delivery Date</label>
+    <input id="deliveryDate" type="datetime-local" [(ngModel)]="model.deliveryDate" name="deliveryDate" />
+
+    <button class="btn" type="submit" [disabled]="f.invalid || loading">
+      {{ loading ? 'Creating...' : 'Create Booking' }}
+    </button>
+    </form>
+  </article>
+</section>

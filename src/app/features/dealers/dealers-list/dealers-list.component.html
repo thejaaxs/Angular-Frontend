@@ -1,0 +1,53 @@
+<section class="page-card page-shell">
+  <div class="section-header">
+    <div>
+      <h2>Dealers</h2>
+      <p class="section-subtitle">Manage dealer records and contact details.</p>
+    </div>
+    <a routerLink="/admin/dealers/create"><button class="btn" type="button">Add Dealer</button></a>
+  </div>
+
+  <div class="panel" *ngIf="loading">
+    <div class="skeleton skeleton-row"></div>
+    <div class="skeleton skeleton-row"></div>
+    <div class="skeleton skeleton-row"></div>
+    <div class="skeleton skeleton-row"></div>
+  </div>
+
+  <div class="state-card error" *ngIf="!loading && errorMessage">
+    <p>{{ errorMessage }}</p>
+    <button class="btn btn-ghost" type="button" (click)="load()">Retry</button>
+  </div>
+
+  <div class="empty" *ngIf="!loading && !errorMessage && list.length === 0">
+    No dealers found.
+  </div>
+
+  <table *ngIf="!loading && !errorMessage && list.length > 0">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Contact</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let d of list">
+        <td>{{ d.dealerId }}</td>
+        <td>{{ d.dealerName }}</td>
+        <td>{{ d.address }}</td>
+        <td>{{ d.contactNumber || '-' }}</td>
+        <td>{{ d.email || '-' }}</td>
+        <td>
+          <div class="table-actions">
+            <a [routerLink]="['/admin/dealers/edit', d.dealerId]"><button class="btn btn-ghost" type="button">Edit</button></a>
+            <button class="btn btn-danger" *ngIf="d.dealerId" type="button" (click)="del(d.dealerId)">Delete</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
